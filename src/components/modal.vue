@@ -113,6 +113,7 @@
     @media screen and (max-width: 767px) {
         .modal {
             height: auto;
+            max-height: 500px;
             margin-left: 2rem;
             margin-right: 2rem;
             padding: 0 3rem 3rem 3rem;

@@ -22,7 +22,7 @@
         opacity: .5;
     }
 
-    .feature__container.active .feature__step {
+    .feature__container.feature__container--active .feature__step {
         opacity: 1;
     }
 
@@ -56,7 +56,7 @@
         transition: all .2s ease-in;
     }
 
-    .feature__container.active .features__divider {
+    .feature__container.feature__container--active .features__divider {
         opacity: 1;
     }
 
@@ -70,9 +70,9 @@
         border-radius: 35px;
         transition: all .2s ease-in;
         filter: drop-shadow(10px 10px 4px rgba(0,0,0,.7));
-        -webkit-box-shadow:0px 0px 300px 67px rgba(48,153,161,0.55);
-        -moz-box-shadow: 0px 0px 300px 67px rgba(48,153,161,0.55);
-        box-shadow: 0px 0px 300px 67px rgba(48,153,161,0.55);
+        -webkit-box-shadow: 77px -25px 323px 87px rgba(48,153,161,0.55);
+        -moz-box-shadow: 77px -25px 323px 87px rgba(48,153,161,0.55);
+        box-shadow: 77px -25px 323px 87px rgba(48,153,161,0.55);
     }
 
     .features__img .features__popup-icon {
@@ -162,7 +162,7 @@
             display: none;
         }
 
-        .feature__container.active {
+        .feature__container.feature__container--active {
             display: block;
         }
 
@@ -179,6 +179,9 @@
 
         .features__img .features__spotlight {
             max-width: 300px;
+            -webkit-box-shadow:0px 0px 200px 37px rgba(48,153,161,0.55);
+            -moz-box-shadow: 0px 0px 200px 37px rgba(48,153,161,0.55);
+            box-shadow: 0px 0px 200px 37px rgba(48,153,161,0.55);
         }
 
         .features__img .features__popup-icon {
@@ -210,7 +213,7 @@
 <template>
     <div class="features">
         <section class="features__steps">
-            <div @click="activateStep(i)" v-for="(step,i) in steps" :key="step.step" class="feature__container" :class="{active: step.active}">
+            <div @click="activateStep(i)" v-for="(step,i) in steps" :key="step.step" class="feature__container" :class="{'feature__container--active': step.active}">
                 <div class="feature__step">
                     <h1>{{step.step}}</h1>
                     <p>{{step.title}}</p>
@@ -253,17 +256,15 @@
 
 <script>
 import Modal from './modal.vue'
+import features from '../features'
 export default {
     data() {
         return {
             animateImg: false,
             showModal: false,
             currentIndex: 0,
-            steps: [
-                {step: "01", title: "Real-time GPS Tracking", active: true, url: '../assets/step_1.png', popupContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."},
-                {step: "02", title: "AI-enabled Safety Cameras", active: false, url: "../assets/step_2.png", popupContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."},
-                {step: "03", title: "Routing and Location Sharing", active: false, url: "../assets/step_3.png", popupContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."},
-            ]
+            steps: features,
+            
         }
     },
     components: {

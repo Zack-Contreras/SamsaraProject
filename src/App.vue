@@ -54,6 +54,7 @@
     main {
       width: auto;
       padding-top: 1rem;
+      margin-bottom: 2rem;
     }
 
     .title {

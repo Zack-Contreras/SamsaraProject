@@ -1,5 +1,5 @@
 <style scoped>
-    .modal-backdrop {
+    .modal__backdrop {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -13,6 +13,8 @@
 
     .modal {
         box-sizing: border-box;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         padding-left: 95px;
         position: relative;
         width: 900px;
@@ -141,7 +143,7 @@
 
 </style>
 <template>
-  <div class="modal-backdrop">
+  <div @click.self="$emit('close-modal')" class="modal__backdrop">
     <div class="modal">
         <img @click="$emit('close-modal')" class="modal__close" src="../assets/Group.svg" alt="Close Button">
         <div class="modal__container">

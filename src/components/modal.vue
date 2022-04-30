@@ -12,6 +12,8 @@
     }
 
     .modal {
+        box-sizing: border-box;
+        padding-left: 95px;
         position: relative;
         width: 900px;
         height: 600px;
@@ -27,10 +29,6 @@
         top: 19px;
         right: 19px;
         cursor: pointer;
-    }
-
-    .modal__header {
-        padding-left: 95px;
     }
 
     .modal__header .modal__step {
@@ -55,7 +53,6 @@
     }
 
     .modal__divider {
-        margin-left: 95px;
         margin-top: 20px;
         width: 96px;
         height: 1px;
@@ -65,7 +62,6 @@
     .modal__body {
         max-width: 646px;
         margin-top: 24px;
-        padding-left: 95px;
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
@@ -85,28 +81,87 @@
         }
     }
 
+    @media screen and (max-width: 1224px) {
+        .modal {
+            max-width: 630px;
+            padding: 0 4rem 0 4rem;
+        }
+
+        .modal__container {
+            width: max-content;
+            margin: auto;
+        }
+
+        .modal__header .modal__step {
+            margin-bottom: 0;
+            font-size: 70px;
+            line-height: 70px;
+        }
+
+        .modal__header .modal__title {
+            font-size: 38px;
+            line-height: 46px;
+        }
+
+        .modal__body {
+            max-width: fit-content;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .modal {
+            height: auto;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            padding: 0 3rem 3rem 3rem;
+        }
+
+        .modal__container {
+            width: auto;
+        }
+
+        .modal__header .modal__step {
+            padding-top: 50px;
+            font-size: 40px;
+            line-height: 40px;
+        }
+
+        .modal__header .modal__title {
+            font-size: 24px;
+        }
+
+        .modal__body {
+            font-size: 1rem;
+        }
+
+        .modal__close {
+            height: 25px;
+        }
+    }
+
 </style>
 <template>
   <div class="modal-backdrop">
     <div class="modal">
         <img @click="$emit('close-modal')" class="modal__close" src="../assets/Group.svg" alt="Close Button">
-        <header class="modal__header">
-            <h1 v-if="stepNumber" class="modal__step">
-                {{stepNumber}}
-            </h1>
-            <div class="modal__title">
-                <slot name="header">
+        <div class="modal__container">
+            <header class="modal__header">
+                <h1 v-if="stepNumber" class="modal__step">
+                    {{stepNumber}}
+                </h1>
+                <div class="modal__title">
+                    <slot name="header">
+                    </slot>
+                </div>
+            </header>  
+
+            <div class="modal__divider" />
+
+            <section class="modal__body">
+                <slot name="body">
                 </slot>
-            </div>
-        </header>  
-
-        <div class="modal__divider" />
-
-        <section class="modal__body">
-            <slot name="body">
-            </slot>
-        </section>
-
+            </section>
+        </div>
     </div>
   </div>
 </template>

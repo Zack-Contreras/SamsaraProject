@@ -33,6 +33,44 @@
     line-height: 42px;
     color: #0DE7EF;
   }
+
+  @media screen and (max-width: 1224px) {
+
+    main {
+      padding: 0 1rem 0 1rem ;
+    }  
+
+    .title h1 {
+      font-size: 55px;
+      line-height: 70px;
+    }
+
+    .title p {
+      font-size: 30px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    main {
+      width: auto;
+      padding-top: 1rem;
+    }
+
+    .title {
+      margin: auto;
+      text-align: center;
+    }
+
+    .title h1 {
+      font-size: 35px;
+      line-height: 42px;
+    }
+
+    .title p {
+      font-size: 24px;
+    }
+  }
+
 </style>
 
 <template>
@@ -47,7 +85,7 @@
         <p>Here are some of our favorite features</p>
       </section>
       <!-- Feature Showcase -->
-      <section class="features">
+      <section>
         <samsara-feature-showcase/>
       </section>
     </main>

@@ -68,6 +68,7 @@
         max-width: 580px;
         height: auto;
         border-radius: 35px;
+        transition: all .2s ease-in;
         filter: drop-shadow(10px 10px 4px rgba(0,0,0,.7));
         -webkit-box-shadow:0px 0px 300px 67px rgba(48,153,161,0.55);
         -moz-box-shadow: 0px 0px 300px 67px rgba(48,153,161,0.55);
@@ -96,6 +97,10 @@
         animation-name: appearin;
     }
 
+    .features__arrow {
+        display: none;
+    }
+
     @keyframes appearin {
         from {
             opacity: 0;
@@ -104,6 +109,100 @@
 
         to {
             opacity: 1;
+        }
+    }
+
+    @media screen and (max-width: 1224px) {
+
+        .features {
+            margin-top: 80px;
+        }
+
+        .feature__step h1 {
+            font-size: 60px;
+            padding-right: 13px;
+        }  
+
+        .feature__step p {
+            padding-top: 18px;
+            font-size: 22px;
+            line-height: 26px;
+        }
+
+        .features__divider {
+            height: 60px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .features__img .features__spotlight {
+            max-width: 400px;
+        }
+
+        .features__img .features__popup-icon {
+            height: 60px;
+            top: 20px;
+            right: 20px;
+        }
+  }
+
+    @media screen and (max-width: 767px) {
+        .features {
+            flex-direction: column;
+            margin-top: 40px;
+        }
+
+        .features__steps {
+            display: flex;
+            justify-content: center;
+            margin-right: 0;
+        }
+
+        .feature__container {
+            display: none;
+        }
+
+        .feature__container.active {
+            display: block;
+        }
+
+        .features__img {
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            margin: auto;
+        }
+
+        .features__divider {
+            display: none;
+        }
+
+        .features__img .features__spotlight {
+            max-width: 300px;
+        }
+
+        .features__img .features__popup-icon {
+            height: 40px;
+            top: 20px;
+            right: 20px;
+        }
+
+        .features__arrow {
+            display: block;
+            position: absolute;
+            cursor: pointer;
+            height: 40px;
+            top: 40%;
+        }
+
+        .features__arrow.features__arrow--left {
+            left: -40px;
+            transform: rotate(180deg);
+        }
+
+        .features__arrow.features__arrow--right {
+            right: -40px;
+            
         }
     }
 </style>
@@ -122,6 +221,20 @@
         <section class="features__img">
             <img :class="{'features__spotlight--animate': animateImg}" :src="featureImage" :alt="activeStep.title" class="features__spotlight">
             <img @click="openModal" src="../assets/popup_icon.png" alt="popup icon" class="features__popup-icon">
+            <img 
+                @click="nextStep" 
+                v-show="currentIndex !== steps.length - 1" 
+                class="features__arrow features__arrow--right" 
+                src="../assets/arrow.svg" 
+                alt=""
+            >
+            <img  
+                @click="previousStep" 
+                v-show="currentIndex !== 0" 
+                class="features__arrow features__arrow--left" 
+                src="../assets/arrow.svg" 
+                alt=""
+            >
         </section>
         <!-- Modal for popup content -->
         <Transition>
@@ -145,6 +258,7 @@ export default {
         return {
             animateImg: false,
             showModal: false,
+            currentIndex: 0,
             steps: [
                 {step: "01", title: "Real-time GPS Tracking", active: true, url: '../assets/step_1.png', popupContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."},
                 {step: "02", title: "AI-enabled Safety Cameras", active: false, url: "../assets/step_2.png", popupContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."},
@@ -157,7 +271,10 @@ export default {
     },
     computed: {
         activeStep() {
-            return this.steps.find(step => step.active)
+            return this.steps.find((step,i) =>  {
+                        this.currentIndex = i
+                        return step.active
+                    })
         },
         featureImage() {
             return require(`../assets/step_${this.activeStep.step}.png`)
@@ -189,6 +306,12 @@ export default {
             setTimeout(() => {
                 this.animateImg = false
             }, 300)
+        },
+        nextStep() {
+            this.activateStep(this.currentIndex + 1)
+        },
+        previousStep() {
+            this.activateStep(this.currentIndex - 1)
         }
     }
 }

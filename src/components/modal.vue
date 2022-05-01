@@ -90,7 +90,7 @@
         }
 
         .modal__container {
-            width: max-content;
+            width: 100%;
             margin: auto;
         }
 
@@ -106,7 +106,7 @@
         }
 
         .modal__body {
-            max-width: fit-content;
+            max-width: 100%;
         }
     }
 

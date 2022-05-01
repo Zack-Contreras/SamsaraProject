@@ -131,6 +131,7 @@
 
         .modal__header .modal__title {
             font-size: 24px;
+            line-height: 32px;
         }
 
         .modal__body {

@@ -2,7 +2,7 @@
 
 ## Concerns
 
-- Because I had to use the box-shadow css property to create the flow effect, the filter for the drop shadow wasn't very visible. I opted to slightly alter it from the mockup to make it more visible. 
+- Because I had to use the box-shadow css property to create the glow effect, the filter for the drop shadow wasn't very visible. I opted to slightly alter it from the mockup to make it more visible. 
 - The animation I put on the feature image is somewhat jarring and I would consult with the designer to craft a better transition.
 
 ## Project setup

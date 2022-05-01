@@ -208,6 +208,21 @@
             
         }
     }
+
+    @media screen and (max-width: 376px) {
+        .features__img .features__spotlight {
+            width: 100%;
+        }
+
+        .features__arrow.features__arrow--left {
+            left: -30px;
+        }
+
+        .features__arrow.features__arrow--right {
+            right: -30px;
+            
+        }
+    }
 </style>
 
 <template>
